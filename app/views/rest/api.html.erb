@@ -1,2 +1,7 @@
-<h1>Rest#api</h1>
-<p>Find me in app/views/rest/api.html.erb</p>
+<% @objects.each do |record| %>
+  <p>
+    <% record.each do |field| %>
+      <%= field.to_s + '   ' %>
+    <% end %>
+  </p>
+<% end %>
