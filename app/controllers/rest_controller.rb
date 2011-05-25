@@ -29,11 +29,14 @@ class RestController < ApplicationController
       project = {}
 
       project[:submited_at] = pf[:submited_at]
-      project[:id] = @@projectsFull.index pf
+      project[:id] = 1 + @@projectsFull.index(pf)
       project[:authors] = pf[:authors]
-
+    
       @@projects += [project]
     end
+
+    @@projects = @@projects.sort_by { |k| k[:submited_at] }
+    @@projects = @@projects.reverse
   end
 
   def api
@@ -43,10 +46,12 @@ class RestController < ApplicationController
     id = params[:id].to_i
     format = params[:format]
 
-    if format == 'json'
-      render :json => @@projectsFull[id]
+    if id <= 0 || id > @@projectsFull.length
+      render :text => 'There is no such index'
+    elsif format == 'json'
+      render :json => @@projectsFull[id - 1].to_json
     elsif format == 'xml'
-      render :xml => @@projectsFull[id].to_xml(:root => 'project')
+      render :xml => @@projectsFull[id - 1].to_xml(:root => 'project')
     else
       render :text => 'The format has to be xml or json'
     end
@@ -55,10 +60,20 @@ class RestController < ApplicationController
   def show_count
     format = params[:format]
 
+    if !params[:count].nil?
+      count = params[:count].to_i
+
+      if count > @@projects.length
+        count = @@projects.length
+      end
+    else
+      count = @@projects.length
+    end
+
     if format == 'json'
-      render :json => @@projects
+      render :json => @@projects[0, count].to_json
     elsif format == 'xml'
-      render :xml => @@projects.to_xml(:root => 'projects', :children => 'project')
+      render :xml => @@projects[0, count].to_xml(:root => 'projects', :children => 'project')
     else
       render :text => 'The format has to be xml or json'
     end
