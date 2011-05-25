@@ -1,14 +1,12 @@
 require 'csv'
 
 class RestController < ApplicationController
-  @@projectsFull = []
-  @@projects = []
-  
   def initialize 
     csv = CSV::parse(File.open(Rails.root + 'contest.csv') { |f| f.read })
     csvFields = csv.shift
     cfLen = csvFields.length
-
+    @projects = []
+  
     csv.each do |record|
       project = {}
       authors = {}
@@ -22,17 +20,7 @@ class RestController < ApplicationController
       project[:project_url] = csv[csv.index(record)][4]
       project[:details] = csv[csv.index(record)][5]
 
-      @@projectsFull += [project]
-    end
-
-    @@projectsFull.each do |pf|
-      project = {}
-
-      project[:submited_at] = pf[:submited_at]
-      project[:id] = @@projectsFull.index pf
-      project[:authors] = pf[:authors]
-
-      @@projects += [project]
+      @projects += [project]
     end
   end
 
@@ -44,23 +32,11 @@ class RestController < ApplicationController
     format = params[:format]
 
     if format == 'json'
-      render :json => @@projectsFull[id]
-    elsif format == 'xml'
-      render :xml => @@projectsFull[id].to_xml(:root => 'project')
-    else
-      render :text => 'The format has to be xml or json'
+      render :json => @projects[id]
     end
-  end
-  
-  def show_count
-    format = params[:format]
 
-    if format == 'json'
-      render :json => @@projects
-    elsif format == 'xml'
-      render :xml => @@projects.to_xml(:root => 'projects', :children => 'project')
-    else
-      render :text => 'The format has to be xml or json'
+    if format == 'xml'
+      render :xml => @projects[id]
     end
   end
 end
