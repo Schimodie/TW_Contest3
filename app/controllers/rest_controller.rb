@@ -73,6 +73,8 @@ class RestController < ApplicationController
       count = @@projects.length
     end
 
+    projs = @@projects
+
     if format == 'json'
       render :json => @@projects[0..(count - 1)].to_json
     elsif format == 'xml'
@@ -80,5 +82,7 @@ class RestController < ApplicationController
     else
       render :text => 'The format has to be xml or json'
     end
+
+    @@projects = projs
   end
 end
