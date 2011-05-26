@@ -45,6 +45,9 @@ class RestController < ApplicationController
   def show_id
     id = params[:id].to_i
     format = params[:format]
+    i = 0
+
+    
 
     if id <= 0 || id > @@projectsFull.length
       render :text => 'There is no such index'
@@ -71,9 +74,9 @@ class RestController < ApplicationController
     end
 
     if format == 'json'
-      render :json => @@projects[0, count].to_json
+      render :json => @@projects[0..(count - 1)].to_json
     elsif format == 'xml'
-      render :xml => @@projects[0, count].to_xml(:root => 'projects', :children => 'project')
+      render :xml => @@projects[0..(count - 1)].to_xml(:root => 'projects', :children => 'project')
     else
       render :text => 'The format has to be xml or json'
     end
