@@ -23,6 +23,8 @@ class RestController < ApplicationController
       project[:details] = csv[csv.index(record)][5]
 
       @@projectsFull += [project]
+      project = nil
+      authors = nil
     end
 
     #@@projectsFull.each do |pf|
@@ -101,5 +103,6 @@ class RestController < ApplicationController
     end
 
     projs = nil
+    rprojs = nil
   end
 end
