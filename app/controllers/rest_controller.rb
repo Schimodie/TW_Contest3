@@ -2,7 +2,7 @@ require 'csv'
 
 class RestController < ApplicationController
   @@projectsFull = []
-  @@projects = []
+  #@@projects = []
   
   def initialize 
     csv = CSV::parse(File.open(Rails.root + 'contest.csv') { |f| f.read })
@@ -25,18 +25,18 @@ class RestController < ApplicationController
       @@projectsFull += [project]
     end
 
-    @@projectsFull.each do |pf|
-      project = {}
+    #@@projectsFull.each do |pf|
+    #  project = {}
 
-      project[:submited_at] = pf[:submited_at]
-      project[:id] = 1 + @@projectsFull.index(pf)
-      project[:authors] = pf[:authors]
+    #  project[:submited_at] = pf[:submited_at]
+    #  project[:id] = 1 + @@projectsFull.index(pf)
+    #  project[:authors] = pf[:authors]
     
-      @@projects += [project]
-    end
+    #  @@projects += [project]
+    #end
 
-    @@projects = @@projects.sort_by { |k| k[:submited_at] }
-    @@projects = @@projects.reverse
+    #@@projects = @@projects.sort_by { |k| k[:submited_at] }
+    #@@projects = @@projects.reverse
   end
 
   def api
@@ -66,23 +66,40 @@ class RestController < ApplicationController
     if !params[:count].nil?
       count = params[:count].to_i
 
-      if count > @@projects.length
-        count = @@projects.length
+      if count > @@projectsFull.length
+        count = @@projectsFull.length
       end
     else
-      count = @@projects.length
+      count = @@projectsFull.length
     end
 
-    projs = @@projects
+    rprojs = @@projectsFull.reverse
+    len = rprojs.length
+    projs = []
+
+    rprojs.each do |pf|
+      if rprojs.index(pf) == count
+        break
+      end
+
+      proj = {}
+
+      proj[:submited_at] = pf[:submited_at]
+      proj[:id] = len - rprojs.index(pf)
+      proj[:authors] = pf[:authors]
+
+      projs += [proj]
+      proj = nil
+    end
 
     if format == 'json'
-      render :json => @@projects[0..(count - 1)].to_json
+      render :json => projs.to_json
     elsif format == 'xml'
-      render :xml => @@projects[0..(count - 1)].to_xml(:root => 'projects', :children => 'project')
+      render :xml => projs.to_xml(:root => 'projects', :children => 'project')
     else
       render :text => 'The format has to be xml or json'
     end
 
-    @@projects = projs
+    projs = nil
   end
 end
