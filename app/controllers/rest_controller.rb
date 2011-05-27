@@ -4,6 +4,9 @@ class RestController < ApplicationController
   def api
   end
 
+  def home
+  end
+
   def show_id
     id = params[:id].to_i
     format = params[:format]
