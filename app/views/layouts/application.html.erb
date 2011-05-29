@@ -15,22 +15,25 @@
   <![endif]-->
 
   <%= stylesheet_link_tag :all %>
-  
-  <%= javascript_include_tag :defaults %>
-  
+
+  <%= javascript_include_tag :all %>
+
   <%= csrf_meta_tag %>
 </head>
 <body>
   <div id="header">
-    <div id="title">TW Concurs 3</div>
+    <div id="title"><%= link_to "TW Concurs 3", root_path %></a></div>
 
     <div id="authors">
       <span>Gagos Radu Vasile</span>
       <span>Cristea Vlad</span>
     </div>
   </div>
-  
-  <%= yield %>
+
+  <div id="content">
+    <%= yield %>
+  </div>
 
 </body>
 </html>
+

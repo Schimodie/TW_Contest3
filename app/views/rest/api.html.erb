@@ -1,2 +1,199 @@
-<p>this is api home</p>
+<div id="api">
+  <div id="api1" class="capi active" onclick="showContent('api1')">projects/show/:id</div>
+  <div id="api2" class="capi inactive" onclick="showContent('api2')">projects/updated-list</div>
+</div>
+
+<div id="capi1" style="display: block">
+  <div class="description">
+    <p class="categ">Descriere</p>
+
+    <p>Este returnat sub forma de xml sau json continutul unei inregistrari din csv-ul dat la primul concurs, apelabil printr-un id (numarul inregistrarii din csv), acesta se mai poate afla si din api-ul ce pune la dispozitie toata lista de inregistrari, cu unele restrictii</p>
+  </div>
+
+  <div class="description">
+    <p class="categ">Tip URL</p>
+
+    <p>http://tw-concurs3.heroku.com/rest/projects/show/:id.:format</p>
+  </div>
+
+  <div class="description">
+    <p class="categ">Formate Disponibile</p>
+
+    <p>xml, json</p>
+  </div>
+
+  <div class="description">
+    <p class="categ">Metoda de cerere</p>
+
+    <p>GET</p>
+  </div>
+
+  <div class="description">
+    <p class="categ">Parametru</p>
+
+    <p>:id - Un numar unic ce identifica un anumit proiect. Exemplu:
+      <br />
+      <span style="color: #447aa4; padding-left: 20px">http://tw-concurs3.heroku.com/rest/projects/show/1.xml</span>
+    </p>
+  </div>
+
+  <div class="description">
+    <p class="categ">Exemple de cereri<p>
+
+    <div class="example">
+      <span id="XML1" class="active" onclick="showContent('XML1')">XML</span><span id="JSON1" onclick="showContent('JSON1')">JSON</span>
+
+      <div id="xml1" style="display: block">
+        <p class="eg">http://tw-concurs3.heroku.com/rest/projects/show/1.xml</p>
+
+<pre><span style="color: #850080">&lt;project&gt;</span>
+  <span style="color: #850080">&lt;submited-at </span><span style="color: #d18f21">type</span>=<span style="color: #00f">"datetime"</span>&gt;2011-02-28T18:36:15-08:00<span style="color: #850080">&lt;/submited-at&gt;</span>
+  <span style="color: #850080">&lt;subject</span> <span style="color: #d18f21">nil</span>=<span style="color: #00f">"true"</span><span style="color: #850080">/&gt;</span>
+  <span style="color: #850080">&lt;authors&gt;</span>
+    <span style="color: #850080">&lt;first></span>Enache Stefan<span style="color: #850080">&lt;/first&gt;</span>
+    <span style="color: #850080">&lt;second</span> <span style="color: #d18f21">nil</span>=<span style="color: #00f">"true"</span><span style="color: #850080">/&gt;</span>
+  <span style="color: #850080">&lt;/authors&gt;</span>
+  <span style="color: #850080">&lt;project-url></span>http://students.info.uaic.ro/~enache.stefan/tw/<span style="color: #850080">&lt;/project-url&gt;</span>
+  <span style="color: #850080">&lt;details&gt;</span>
+    Am fost nevoit sa adaug si sa modific cateva elemente din html pentru a putea implementa designul dorit. Cu toate acestea html-ul este valid. CSSul in schimb contine cateva linii care nu sunt valide. Am ales sa le folosesc pe acestea pentru a oferi colturi rotunde in majoritatea browserelor.
+Vreau sa mai precizez faptul ca eu sunt Enache Stefan din grupa 2B, nu cel din grupa 3B.
+  <span style="color: #850080">&lt;/details&gt;</span>
+<span style="color: #850080">&lt;/project&gt;</span></pre>
+      </div>
+
+      <div id="json1" style="display: none">
+        <p class="eg">http://tw-concurs3.heroku.com/rest/projects/show/1.json</p>
+
+<pre><span style="color: #729fcf">{</span>
+  <span style="color: #204a87">"submited_at"</span> : <span style="color: #4e9a06">"2011-02-28T18:36:15-08:00"</span>,
+  <span style="color: #204a87">"subject"</span> : <span style="color: #babdb6">null</span>,
+  <span style="color: #204a87">"authors"</span> :
+              <span style="color: #729fcf">{</span>
+                <span style="color: #204a87">"first"</span> : <span style="color: #4e9a06">"Enache Stefan"</span>,
+                <span style="color: #204a87">"second"</span> : <span style="color: #babdb6">null</span>
+              <span style="color: #729fcf">}</span>,
+  <span style="color: #204a87">"project_url"</span> : <span style="color: #4e9a06">"http://students.info.uaic.ro/~enache.stefan/tw/"</span>,
+  <span style="color: #204a87">"details"</span> : <span style="color: #4e9a06">"Am fost nevoit sa adaug si sa modific cateva elemente din html pentru a putea implementa designul dorit. Cu toate acestea html-ul este valid. CSSul in schimb contine cateva linii care nu sunt valide. Am ales sa le folosesc pe acestea pentru a oferi colturi rotunde in majoritatea browserelor.\nVreau sa mai precizez faptul ca eu sunt Enache Stefan din grupa 2B, nu cel din grupa 3B."</span>
+<span style="color: #729fcf">}</span></pre>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div id="capi2" style="display:none">
+  <div class="description">
+    <p class="categ">Descriere</p>
+
+    <p>Acest URI poate intoarce toata lista de inregistrari ale proiectelor in ordine inversa a inregistrarii lor in concurs (ultimul inregistrat este primul din lista) sau o parte din ea prin intermediul parmetrului count. Aceasta lista nu contine subiectul, url-ul la care se afla proiectul sau descrierea facuta de participanti, insa are id-urile (per proiect) la care se afla si acestea.</p>
+  </div>
+
+  <div class="description">
+    <p class="categ">Tip URL</p>
+
+    <p>http://tw-concurs3.heroku.com/rest/projects/show/updated-list.:format[?count=:number]</p>
+  </div>
+
+  <div class="description">
+    <p class="categ">Formate disponibile</p>
+
+    <p>xml, json</p>
+  </div>
+
+  <div class="description">
+    <p class="categ">Metoda de cerere</p>
+
+    <p>GET</p>
+  </div>
+
+  <div class="description">
+    <p class="categ">Parametru</p>
+
+    <p>count - Parametru ce ia ca valoare un numar si returneaza o limitare al intregului vector de valori
+      <br />
+      <span style="color: #447aa4; padding-left: 20px">http://tw-concurs3.heroku.com/rest/projects/updated-list.xml?count=3</span>
+    </p>
+  </div>
+
+  <div class="description">
+    <p class="categ">Exemple de cereri<p>
+
+    <div class="example">
+      <span id="XML2" class="active" onclick="showContent('XML2')">XML</span><span id="JSON2" onclick="showContent('JSON2')">JSON</span>
+
+      <div id="xml2" style="display: block">
+        <p class="eg">http://tw-concurs3.heroku.com/rest/projects/updated-list.xml?count=3</p>
+
+<pre><span style="color: #850080">&lt;projects </span><span style="color: #d18f21">type</span>=<span style="color: #00f">"array"</span>&gt;
+  <span style="color: #850080">&lt;project&gt;</span>
+    <span style="color: #850080">&lt;submited-at </span><span style="color: #d18f21">type</span>=<span style="color: #00f">"datetime"</span>&gt;2011-03-05T23:44:10-08:00<span style="color: #850080">&lt;/submited-at&gt;</span>
+    <span style="color: #850080">&lt;id </span><span style="color: #d18f21">type</span>=<span style="color: #00f">"integer"</span>&gt;51<span style="color: #850080">&lt;/id&gt;</span>
+    <span style="color: #850080">&lt;authors&gt;</span>
+      <span style="color: #850080">&lt;first></span>Bran M. Tiberiu Gabriel<span style="color: #850080">&lt;/first&gt;</span>
+      <span style="color: #850080">&lt;second</span>Perea N. Alexandru<span style="color: #850080">&lt;/second&gt;</span>
+    <span style="color: #850080">&lt;/authors&gt;</span>
+  <span style="color: #850080">&lt;/project&gt;</span>
+  <span style="color: #850080">&lt;project&gt;</span>
+  <span style="color: #850080">&lt;submited-at </span><span style="color: #d18f21">type</span>=<span style="color: #00f">"datetime"</span>&gt;2011-03-05T23:43:53-08:00<span style="color: #850080">&lt;/submited-at&gt;</span>
+    <span style="color: #850080">&lt;id </span><span style="color: #d18f21">type</span>=<span style="color: #00f">"integer"</span>&gt;50<span style="color: #850080">&lt;/id&gt;</span>
+    <span style="color: #850080">&lt;authors&gt;</span>
+      <span style="color: #850080">&lt;first></span>Placinta Salaru Mihai-Alin<span style="color: #850080">&lt;/first&gt;</span>
+      <span style="color: #850080">&lt;second</span> <span style="color: #d18f21">nil</span>=<span style="color: #00f">"true"</span><span style="color: #850080">/&gt;</span>
+    <span style="color: #850080">&lt;/authors&gt;</span>
+  <span style="color: #850080">&lt;/project&gt;</span>
+  <span style="color: #850080">&lt;project&gt;</span>
+  <span style="color: #850080">&lt;submited-at </span><span style="color: #d18f21">type</span>=<span style="color: #00f">"datetime"</span>&gt;2011-03-05T23:40:08-08:00<span style="color: #850080">&lt;/submited-at&gt;</span>
+    <span style="color: #850080">&lt;id </span><span style="color: #d18f21">type</span>=<span style="color: #00f">"integer"</span>&gt;49<span style="color: #850080">&lt;/id&gt;</span>
+    <span style="color: #850080">&lt;authors&gt;</span>
+      <span style="color: #850080">&lt;first></span>Barticel Eduard Lucian<span style="color: #850080">&lt;/first&gt;</span>
+      <span style="color: #850080">&lt;second</span> <span style="color: #d18f21">nil</span>=<span style="color: #00f">"true"</span><span style="color: #850080">/&gt;</span>
+    <span style="color: #850080">&lt;/authors&gt;</span>
+  <span style="color: #850080">&lt;/project&gt;</span>
+<span style="color: #850080">&lt;/projects&gt;</span></pre>
+      </div>
+
+      <div id="json2" style="display: none">
+        <p class="eg">http://tw-concurs3.heroku.com/rest/projects/updated-list.json?count=3</p>
+
+<pre><span style="color: #a40000">[</span>
+  <span style="color: #729fcf">{</span>
+    <span style="color: #204a87">"submited_at"</span> : <span style="color: #4e9a06">"2011-03-05T23:44:10-08:00"</span>,
+    <span style="color: #204a87">"id"</span> : <span style="color: #ad7fa8">51</span>,
+    <span style="color: #204a87">"authors"</span> :
+                <span style="color: #729fcf">{</span>
+                  <span style="color: #204a87">"first"</span> : <span style="color: #4e9a06">"Bran M. Tiberiu Gabriel"</span>,
+                  <span style="color: #204a87">"second"</span> : <span style="color: #4e9a06">"Perea N. Alexandru"</span>
+                <span style="color: #729fcf">}</span>
+  <span style="color: #729fcf">}</span>,
+  <span style="color: #729fcf">{</span>
+    <span style="color: #204a87">"submited_at"</span> : <span style="color: #4e9a06">"2011-03-05T23:43:53-08:00"</span>,
+    <span style="color: #204a87">"id"</span> : <span style="color: #ad7fa8">50</span>,
+    <span style="color: #204a87">"authors"</span> :
+                <span style="color: #729fcf">{</span>
+                  <span style="color: #204a87">"first"</span> : <span style="color: #4e9a06">"Placinta Salaru Mihai-Alin"</span>,
+                  <span style="color: #204a87">"second"</span> : <span style="color: #babdb6">null</span>
+                <span style="color: #729fcf">}</span>
+  <span style="color: #729fcf">}</span>,
+  <span style="color: #729fcf">{</span>
+    <span style="color: #204a87">"submited_at"</span> : <span style="color: #4e9a06">"2011-03-05T23:40:08-08:00"</span>,
+    <span style="color: #204a87">"id"</span> : <span style="color: #ad7fa8">49</span>,
+    <span style="color: #204a87">"authors"</span> :
+                <span style="color: #729fcf">{</span>
+                  <span style="color: #204a87">"first"</span> : <span style="color: #4e9a06">"Barticel Eduard Lucian"</span>,
+                  <span style="color: #204a87">"second"</span> : <span style="color: #babdb6">null</span>
+                <span style="color: #729fcf">}</span>
+  <span style="color: #729fcf">}</span>
+<span style="color: #a40000">]</span></pre>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+
+<!--
+<div>Parametrii</div>
+  <div id="in">obligatorii</div>
+
+    <div id="in">* id = Identificatoul numeric a proiectului dorit</div>
+    <div id="in">http://tw-concurs3.heroku.com/rest/projects/show/1.xml</div>
+-->
 

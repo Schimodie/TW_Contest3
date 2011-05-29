@@ -1,8 +1,9 @@
 #header
 {
-  background-color: #981A21;
+  background-color: #981a21;
   border-bottom: 3px solid #c42129;
-  color: #ffffee;
+  color: #ffe;
+  clear: both;
   height: 100px;
   padding:10px 0;
   position: relative;
@@ -18,6 +19,12 @@
   margin-left: 10%;
   margin-top: 16px;
   width: 40%;
+}
+
+#title a
+{
+  color: inherit;
+  text-decoration: none;
 }
 
 #authors
@@ -42,7 +49,7 @@
   text-align: left;
 }
 
-#content p, #content a
+#content p, #content a, #content .capi, #XML1, #JSON1, #XML2, #JSON2
 {
   font-family: Cambria, Georgia, Times, "Times New Roman", serif;
   font-size: 15px;
@@ -51,34 +58,71 @@
 #content
 {
   margin: 0 auto;
-  padding: 10px;
+  padding: 0 10px;
   width: 80%;
+}
+
+#api
+{
+  background-color: #c42129;
+  border: 3px solid #c42129;
+  color: #ffe;
+  height: 30px;
+  position: relative;
+  top: -3px;
+}
+
+.capi
+{
+  display: inline-block;
+  float: left;
+  line-height: 30px;
+  text-align: center;
+  width: 50%;
+}
+
+.capi:hover
+{
+  background-color: #ae1e25;
+  cursor: pointer;
+}
+
+.active
+{
+  background-color: #c42129;
+  color: #ffe !important;
+}
+
+.inactive
+{
+  background-color: #981a21;
 }
 
 .description
 {
-  margin-bottom: 40px;
-  width: 60%
+  margin-bottom: 30px;
+  margin-top: 10px;
+  width: 65%
 }
 
-.description p.def
+.description p
 {
   text-indent: 20px;
+}
+
+.description p.def,
+{
   text-align: justify;
   margin: 0 0 5px ;
 }
 
 .description a
 {
-  /*border-radius: 5px;
-  -moz-border-radius: 5px;
-  -o-border-radius:5px;
-  -webkit-border-radius: 5px;*/
+  background-color: #eee;
   box-shadow: 2px 2px 2px #999;
   -moz-box-shadow: 2px 2px 2px #999;
   -o-box-shadow: 2px 2px 2px #999;
   -webkit-box-shadow: 2px 2px 2px #999;
-  background-color: #eee;
   color: #980905;
   display: block;
   line-height: 30px;
@@ -92,3 +136,67 @@
   background-color: #f3f3f3;
   color: #ee3f3f;
 }
+
+.description p.categ
+{
+  background-color: #c42129;
+  border-radius: 15px;
+  -moz-border-radius: 15px;
+  -o-border-radius: 15px;
+  -webkit-border-radius: 15px;
+  color: #ffe;
+  margin: 0 0 10px;
+}
+
+.example
+{
+  padding-left: 20px;
+  padding-right: 20px;
+}
+
+#XML1, #JSON1, #XML2, #JSON2
+{
+  border-top-left-radius: 5px;
+  -moz-border-radius-topleft: 5px;
+  -o-border-radius-topleft: 5px;
+  -webkit-border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+  -moz-border-radius-topright: 5px;
+  -o-border-radius-topright: 5px;
+  -webkit-border-top-right-radius: 5px;
+  padding-left: 10px;
+  padding-right: 10px;
+}
+
+#XML1:hover, #JSON1:hover, #XML2:hover, #JSON2:hover
+{
+  background-color: #ccc;
+  cursor: pointer;
+}
+
+#xml1, #json1, #xml2, #json2
+{
+  position: relative;
+  top: -2px;
+}
+
+.eg
+{
+  background-color: #c42129;
+  color: #ffe;
+  text-indent: 10px !important;
+  padding-top: 3px;
+  margin-bottom: 3px;
+}
+
+.example pre
+{
+  font-size: 14px;
+  margin: 0 !important;
+  white-space: pre-wrap;
+  white-space: -moz-pre-wrap;
+  white-space: -pre-wrap;
+  white-space: -o-pre-wrap;
+  word-wrap: break-word;
+}
+
