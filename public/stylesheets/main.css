@@ -9,6 +9,18 @@
   position: relative;
 }
 
+#footer
+{
+  padding-bottom: 30px;
+  text-align: center;
+}
+
+#footer p
+{
+  margin: 0;
+  padding: 0;
+}
+
 #title
 {
   clear: right;
@@ -49,7 +61,7 @@
   text-align: left;
 }
 
-#content p, #content a, #content .capi, #XML1, #JSON1, #XML2, #JSON2
+#content p, #content a, #content .capi, #XML1, #JSON1, #XML2, #JSON2, #footer
 {
   font-family: Cambria, Georgia, Times, "Times New Roman", serif;
   font-size: 15px;
